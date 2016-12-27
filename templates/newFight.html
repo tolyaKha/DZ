@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NewFight</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        <div class="form-group">
+        {% for el in errors %}
+        <div>
+            <strong>{{ el }}</strong>
+        </div>
+        {% endfor %}
+        </div>
+        <p><label>idFight:
+        <input type="number" name="idFight" value="{{ idFight }}">
+        </label></p>
+        <p><label>date:
+        <input type="date" name="date" value="{{ date }}">
+        </label></p>
+        <p><label>time:
+        <input type="time" name="time" value="{{ time }}">
+        </label></p>
+        <p><label>boxer1:
+        <input type="text" name="boxer1" value="{{ boxer1 }}">
+        </label></p>
+        <p><label>boxer2:
+        <input type="text" name="boxer2" value="{{ boxer2 }}">
+        </label></p>
+        <p><label>idBoxer1:
+        <input type="number" name="idBoxer1" value="{{ idBoxer1 }}">
+        </label></p>
+        <p><label>idBoxer2:
+        <input type="number" name="idBoxer2" value="{{ idBoxer2 }}">
+        </label></p>
+​        <button type="submit">Создать​</button>
+    </form>
+</body>
+</html>

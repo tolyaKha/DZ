@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        <div class="form-group">
+        {% for el in errors %}
+        <div>
+            <strong>{{ el }}</strong>
+        </div>
+        {% endfor %}
+        </div>
+        <p><label>Логин:
+        <input type="text" name="username" value="{{ username }}">
+        </label></p>
+        <p><label>Пароль:
+        <input type="text" name="password">
+        </label></p>
+        <button type="submit">Войти</button>
+    </form>
+</body>
+</html>

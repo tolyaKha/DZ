@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        <div class="form-group">
+        {% for el in errors %}
+        <div>
+            <strong>{{ el }}</strong>
+        </div>
+        {% endfor %}
+        </div>
+        <p><label>Логин:
+        <input type="text" name="username" value="{{ username }}">
+        </label></p>
+        <p><label>Пароль:
+        <input type="text" name="password">
+        </label></p>
+        <p><label>Повторите ввод:
+        <input type="text" name="password2">
+        </label></p>
+        <p><label>E-mail:
+        <input type="text" name="E_mail" value="{{ E_mail }}">
+        </label></p>
+        <p><label>Фамилия:
+        <input type="text" name="surname" value="{{ surname }}">
+        </label></p>
+        <p><label>Имя:
+        <input type="text" name="name" value="{{ name }}">
+        </label></p>
+​        <button type="submit">Зарегистрировать​</button>
+    </form>
+</body>
+</html>

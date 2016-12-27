@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}Расписание боев{% endblock %}
+
+{% block title %}Ближайшие бои{% endblock %}
+<html>
+<body>
+{% block body %}
+        {% if user.is_authenticated %}
+            <p align="right"><span class='a1' >Вы авторизованы.</span><br>
+            <span class='a1' >Здравствуй, {{user.username}}</span><br>
+            <span class='a1'><a href="{% url 'logout' %}" title="Выход"> Выход </a></span><br></p>
+            {% if user.is_staff %}
+                <center><a href="{% url 'NewFight' %}" type="button" class="btn btn-success">Новый поединок</a></center>
+            {% endif %}
+        {% else %}
+            <p align="right"><span class='a1' >Вы не авторизованы</span><br>
+            <span class='a1'><a href="{% url 'login' %}" title="Вход"> Вход </a></span><br>
+            <span class='a1'><a href="{% url 'registration' %}" title="Регистрация"> Регистрация </a></span></p>
+        {% endif %}
+
+        {% for fight in fights %}
+            <a href="{% url 'fight_url' fight.idFight %}">{{ fight.boxer1 }} VS {{ fight.boxer2 }}</a>
+            <hr/>
+        {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if fights.has_previous %}
+                <center><a href="?page={{ fights.previous_page_number }}">previous</a></center>
+            {% endif %}
+
+            {% if fights.has_next %}
+                <center><a href="?page={{ fights.next_page_number }}">next</a></center>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
+</body>
+</html>

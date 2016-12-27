@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Подробности боя{% endblock %}
+
+{% block header %}
+    {% for f in fight %}
+        <a>{{ f.boxer1 }} VS {{ f.boxer2 }}</a>
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+        {% if user.is_authenticated %}
+            <p align="right"><span class='a1' >Вы авторизованы.</span><br>
+            <span class='a1' >Здравствуй, {{user.username}}</span><br>
+            <span class='a1'><a href="{% url 'logout' %}" title="Выход"> Выход </a></span><br></p>
+        {% else %}
+            <p align="right"><span class='a1' >Вы не авторизованы</span><br>
+            <span class='a1'><a href="{% url 'login' %}" title="Вход"> Вход </a></span><br>
+            <span class='a1'><a href="{% url 'registration' %}" title="Регистрация"> Регистрация </a></span></p>
+        {% endif %}
+        {% for f in fight %}
+            <a>Дата поединка: {{f.date}}</a><br>
+            <a>Время: {{f.time}}</a><br>
+            <hr/>
+            {% for b in boxer %}
+                {% if f.idBoxer1 == b.idBoxer %}
+                    <a>1-й боксер</a><br>
+                    <a>Весовая категория: {{ b.title }}</a><br>
+                    <a>Фамилия: {{ b.boxer_last_name }}</a><br>
+                    <a>Имя: {{ b.boxer_first_name }}</a><br>
+                    <hr/>
+                {% endif %}
+                {% if f.idBoxer2 == b.idBoxer %}
+                    <a>2-й боксер</a><br>
+                    <a>Весовая категория: {{ b.title }}</a><br>
+                    <a>Фамилия: {{ b.boxer_last_name }}</a><br>
+                    <a>Имя: {{ b.boxer_first_name }}</a><br>
+                    <hr/>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+         <center><button type="button" class="btn btn-success">Сделать ставку</button></center>
+{% endblock %}
